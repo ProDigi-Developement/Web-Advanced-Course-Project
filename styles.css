@@ -1,0 +1,15 @@
+ul {
+  margin: 0;
+  padding:0;
+  list-style: none;
+}
+
+ul li.job {
+  border: 1px solid black;
+  padding: 20px;
+
+}
+
+ul li.job h3 {
+  margin: 0;
+}
