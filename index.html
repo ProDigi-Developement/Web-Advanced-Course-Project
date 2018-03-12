@@ -41,13 +41,10 @@
         Vishnu, Kevin, Denis
       -->
       <div v-else-if="currentPage === 'job-details'" class="job-details">
-        <h4>
-          {{currentJob.title}}
-        </h4>
-        <p>
-          {{currentJob.description}}
-        </p>
-        job-details
+        <h1>Job Details</h1>
+
+          <lc-job-details-route></lc-job-details-route>
+
       </div>
 
       <!--
