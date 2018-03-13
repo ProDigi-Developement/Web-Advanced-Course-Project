@@ -12,40 +12,40 @@ function Job(parameters) {
 
 let jobs = [
     new Job({
-        title: 'frontend developer 1',
+        title: 'Software Developer',
         startDate: new Date(),
-        description: 'Looking for a web developer who had 15 years of Vue.js',
+        description: '2-5 years’ experience in developing healthcare software applications in C#, Java, .Net, C++, HTML5',
         stack: {
             backend: ['Node', 'Express', 'SQL'],
             frontend: ['Vue', 'HTML', 'Sass', 'Bootstrap', 'Javascript'],
         },
-        numberApplied: 0,
+        numberApplied: 10,
         salary: 200000,
         postDate: new Date(),
         applicantList: [],
     }),
     new Job({
-        title: 'frontend developer 1',
+        title: 'Full Stack Developer',
         startDate: new Date(),
-        description: 'Looking for a web developer who had 15 years of Vue.js',
+        description: 'Experience using, or familiarity with the MEAN Stack: MongoDB, Express, AngularJS and Node.JS',
         stack: {
             backend: ['Node', 'Express', 'SQL'],
             frontend: ['Vue', 'HTML', 'Sass', 'Bootstrap', 'Javascript'],
         },
-        numberApplied: 0,
+        numberApplied: 5,
         salary: 200000,
         postDate: new Date(),
         applicantList: [],
     }),
     new Job({
-        title: 'frontend developer 1',
+        title: 'Front End Developer',
         startDate: new Date(),
-        description: 'Looking for a web developer who had 15 years of Vue.js',
+        description: 'Prior hands-on experience with JavaScript and JavaScript frameworks, such as VueJS and React;',
         stack: {
             backend: ['Node', 'Express', 'SQL'],
             frontend: ['Vue', 'HTML', 'Sass', 'Bootstrap', 'Javascript'],
         },
-        numberApplied: 0,
+        numberApplied: 15,
         salary: 200000,
         postDate: new Date(),
         applicantList: [],
@@ -54,24 +54,39 @@ let jobs = [
 
 let JobListComponent = Vue.component('job-list', {
     template: `
-      <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" v-for="job in jobs">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{job.title}}</h5>
-            <small>{{job.postDate}}</small>
-          </div>
-          <p class="mb-1">{{job.description}}</p>
-          <div class="d-flex justify-content-between">
-            <small>Salary {{job.salary}}</small>
-            <span class="badge badge-primary badge-pill">14</span>
-          </div>
-        </a>
+      <div>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" v-for="job in jobs">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{job.title}}</h5>
+              <small>{{job.postDate}}</small>
+            </div>
+            <p class="mb-1">{{job.description}}</p>
+            <div class="d-flex justify-content-between">
+              <small>Salary {{job.salary}}</small>
+              <span class="badge badge-primary badge-pill">{{job.numberApplied}}</span>
+            </div>
+          </a>
+        </div>
+        <button type="button" class="btn btn-primary float-right">New Job</button>
       </div>
     `,
     data: function() {
         return {
             jobs: jobs
         };
+    }
+});
+
+let CompanyProfileComponent = Vue.component('company-profile', {
+    template: `
+    <div>
+      <h2>Company Profile</h2>
+      <p>In construction</p>
+    </div>
+  `,
+    data: function() {
+        return {};
     }
 });
 
@@ -120,7 +135,8 @@ let ApplicantListComponent = Vue.component('lc-applicant-list', {
 
 const routes = [
     { path: '/jobs', component: JobListComponent },
-    { path: '/applicants', component: ApplicantListComponent }
+    { path: '/applicants', component: ApplicantListComponent },
+    { path: '/company', component: CompanyProfileComponent }
 ]
 
 const router = new VueRouter({

@@ -12,16 +12,25 @@
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
 
-    <title>Hello, world!</title>
+    <title>Lambton Job Board</title>
 </head>
 
 <body>
-    <div id="app">
-
-        <div class='nav'>
-            <router-link to="/jobs">Job List</router-link>
-            <router-link to="/applicants">Application List</router-link>
-        </div>
+    <div class="jumbotron">
+        <h1 class="display-4">Lambton Job Board</h1>
+    </div>
+    <div id="app" class="container">
+        <ul class="nav">
+            <li class="nav-item">
+                <router-link to="/jobs" class="nav-link">Job List</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link to="/applicants" class="nav-link">Application List</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link to="/company" class="nav-link">Company Profile</router-link>
+            </li>
+        </ul>
         <router-view></router-view>
     </div>
 
