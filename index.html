@@ -19,67 +19,15 @@
     <div id="app">
 
         <div class='nav'>
-            <a href="#" v-on:click="setPage('job-list')">Job List</a>
-            <a href="#" v-on:click="setPage('job-details')">job-details</a>
-            <a href="#" v-on:click="setPage('company-profile')">company-profile</a>
-            <router-link to="/applicants">Application List</router-link>
             <router-link to="/jobs">Job List</router-link>
-            <a href="#" v-on:click="setPage('student-profile')">student-profile</a>
+            <router-link to="/applicants">Application List</router-link>
         </div>
-
-        <!--
-        Mayank, Arsh
-      -->
-        <div v-if="currentPage === 'job-list'" class="job-list">
-            <h1>
-                Job list
-            </h1>
-            <ul>
-                <li class="job" v-for='job in jobList' v-on:click="selectJob(job)">
-                    <lc-job v:bind:joby=job></lc-job>
-                </li>
-            </ul>
-        </div>
-
-        <!--
-        Vishnu, Kevin, Denis
-      -->
-        <div v-else-if="currentPage === 'job-details'" class="job-details">
-            <h4>
-                {{currentJob.title}}
-            </h4>
-            <p>
-                {{currentJob.description}}
-            </p>
-            job-details
-        </div>
-
-        <!--
-        Jen, Mayur
-      -->
-        <div v-else-if="currentPage === 'company-profile'" class="company-profile">
-            company-profile
-        </div>
-
-        <!-- Mayank, Arsh -->
-        <lc-applicant-list v-else-if="currentPage === 'applications-list'"></lc-applicant-list>
-
-        <!--
-        Vishnu, Kevin, Denis
-      -->
-
-        <div v-else-if="currentPage === 'student-profile'" class="student-profile">
-            student-profile
-        </div>
-
-        <div v-else>404</div>
         <router-view></router-view>
     </div>
 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="./components/aplicant-list.js"></script>
     <script src="./index.js"></script>
     <script src="./router.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
