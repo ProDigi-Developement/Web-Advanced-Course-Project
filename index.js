@@ -30,10 +30,10 @@ let ApplicantListComponent = Vue.component('lc-applicant-list', {
 
 let jobComponent = Vue.component('lc-job', {
   // options
-  props: ['job'],
+  props: ['joby'],
 
   template: `
-  	<h3>{{job.title}}</h3>
+  	<h3>jo</h3>
   `,
   data: function() {
   	return {

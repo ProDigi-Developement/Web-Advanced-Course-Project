@@ -1,6 +1,6 @@
 export let jobComponent = Vue.component('lc-job', {
   // options
-  props: ['job'],
+  props: ['joby'],
 
   template: `
   	<h3>jobb!!</h3>
