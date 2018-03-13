@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,74 +9,82 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
 
     <title>Hello, world!</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="app">
 
-      <div class='nav'>
-       <a href="#" v-on:click="setPage('job-list')">Job List</a>
-       <a href="#" v-on:click="setPage('job-details')">job-details</a>
-       <a href="#" v-on:click="setPage('company-profile')">company-profile</a>
-       <a href="#" v-on:click="setPage('applications-list')">applications-list</a>
-       <a href="#" v-on:click="setPage('student-profile')">student-profile</a>
-      </div>
+        <div class='nav'>
+            <a href="#" v-on:click="setPage('job-list')">Job List</a>
+            <a href="#" v-on:click="setPage('job-details')">job-details</a>
+            <a href="#" v-on:click="setPage('company-profile')">company-profile</a>
+            <router-link to="/applicants">Application List</router-link>
+            <router-link to="/jobs">Job List</router-link>
+            <a href="#" v-on:click="setPage('student-profile')">student-profile</a>
+        </div>
 
-      <!--
+        <!--
         Mayank, Arsh
       -->
-      <div v-if="currentPage === 'job-list'" class="job-list">
-        <h1>
-         Job list
-        </h1>
-        <ul>
-          <li class="job" v-for='job in jobList' v-on:click="selectJob(job)">
-            <lc-job v:bind:joby=job></lc-job>
-          </li>
-        </ul>
-      </div>
+        <div v-if="currentPage === 'job-list'" class="job-list">
+            <h1>
+                Job list
+            </h1>
+            <ul>
+                <li class="job" v-for='job in jobList' v-on:click="selectJob(job)">
+                    <lc-job v:bind:joby=job></lc-job>
+                </li>
+            </ul>
+        </div>
 
-      <!--
+        <!--
         Vishnu, Kevin, Denis
       -->
-      <div v-else-if="currentPage === 'job-details'" class="job-details">
-        <h4>
-          {{currentJob.title}}
-        </h4>
-        <p>
-          {{currentJob.description}}
-        </p>
-        job-details
-      </div>
+        <div v-else-if="currentPage === 'job-details'" class="job-details">
+            <h4>
+                {{currentJob.title}}
+            </h4>
+            <p>
+                {{currentJob.description}}
+            </p>
+            job-details
+        </div>
 
-      <!--
+        <!--
         Jen, Mayur
       -->
-      <div v-else-if="currentPage === 'company-profile'" class="company-profile">
-        company-profile
-      </div>
+        <div v-else-if="currentPage === 'company-profile'" class="company-profile">
+            company-profile
+        </div>
 
-      <!-- Mayank, Arsh -->
-      <lc-applicant-list v-else-if="currentPage === 'applications-list'" ></lc-applicant-list>
+        <!-- Mayank, Arsh -->
+        <lc-applicant-list v-else-if="currentPage === 'applications-list'"></lc-applicant-list>
 
-      <!--
+        <!--
         Vishnu, Kevin, Denis
       -->
 
-      <div v-else-if="currentPage === 'student-profile'" class="student-profile">
-        student-profile
-      </div>
+        <div v-else-if="currentPage === 'student-profile'" class="student-profile">
+            student-profile
+        </div>
 
-      <div v-else>404</div>
+        <div v-else>404</div>
+        <router-view></router-view>
     </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./components/aplicant-list.js"></script>
     <script src="./index.js"></script>
+    <script src="./router.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+</body>
+
 </html>
