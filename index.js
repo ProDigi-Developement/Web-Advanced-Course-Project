@@ -30,10 +30,10 @@ let ApplicantListComponent = Vue.component('lc-applicant-list', {
 
 let jobComponent = Vue.component('lc-job', {
   // options
-  props: ['joby'],
+  props: ['job'],
 
   template: `
-  	<h3>jo</h3>
+  	<h3>{{job.title}}</h3>
   `,
   data: function() {
   	return {
@@ -48,7 +48,7 @@ let JobDetailsComponent = Vue.component('lc-job-details-route', {
    template: `<h3></h3>`,
    data: function() {
   	return {
-        
+
 
     };
   }

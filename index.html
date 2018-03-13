@@ -32,7 +32,7 @@
         </h1>
         <ul>
           <li class="job" v-for='job in jobList' v-on:click="selectJob(job)">
-            <lc-job v:bind:joby=job></lc-job>
+            <lc-job v:bind:job=job></lc-job>
           </li>
         </ul>
       </div>
