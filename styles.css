@@ -23,7 +23,15 @@ ul li.job h3 {
   margin: 0;
 }
 
-.nav-link:visited,
-.nav-link:hover{
-color: #ffffff;
+.nav-linked{
+ padding:8px;
+ color: #c4c4c4;
+ display: block;
+ text-decoration: none;
+}
+
+.nav-linked:hover,
+.nav-linked:active{
+  text-decoration: none;
+  color: #ffffff;
 }
