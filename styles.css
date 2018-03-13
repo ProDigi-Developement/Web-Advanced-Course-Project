@@ -14,9 +14,16 @@ ul li.job h3 {
   margin: 0;
 }
 
+/* navigation bar */
+
 #nav_title{
   color:#6ce2ff;
   font-size: 20px;
   font-weight: 500;
   margin: 0;
+}
+
+.nav-link:visited,
+.nav-link:hover{
+color: #ffffff;
 }
