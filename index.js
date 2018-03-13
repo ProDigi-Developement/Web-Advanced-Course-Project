@@ -1,4 +1,5 @@
 function Job(parameters) {
+    this.id = parameters.id;
     this.title = parameters.title;
     this.startDate = parameters.startDate;
     this.description = parameters.description;
@@ -9,9 +10,9 @@ function Job(parameters) {
     this.applicantList = parameters.applicantList;
 }
 
-
 let jobs = [
     new Job({
+        id: 1,
         title: 'Software Developer',
         startDate: new Date(),
         description: '2-5 years’ experience in developing healthcare software applications in C#, Java, .Net, C++, HTML5',
@@ -25,6 +26,7 @@ let jobs = [
         applicantList: [],
     }),
     new Job({
+        id: 2,
         title: 'Full Stack Developer',
         startDate: new Date(),
         description: 'Experience using, or familiarity with the MEAN Stack: MongoDB, Express, AngularJS and Node.JS',
@@ -38,6 +40,7 @@ let jobs = [
         applicantList: [],
     }),
     new Job({
+        id: 3,
         title: 'Front End Developer',
         startDate: new Date(),
         description: 'Prior hands-on experience with JavaScript and JavaScript frameworks, such as VueJS and React;',
@@ -52,11 +55,11 @@ let jobs = [
     })
 ];
 
-let JobListComponent = Vue.component('job-list', {
+let JobListComponent = Vue.component('lc-job-list', {
     template: `
       <div>
         <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" v-for="job in jobs">
+          <a class="list-group-item list-group-item-action flex-column align-items-start" v-for="job in jobs" v-on:click="showJobDetail(job)" >
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{job.title}}</h5>
               <small>{{job.postDate}}</small>
@@ -68,17 +71,25 @@ let JobListComponent = Vue.component('job-list', {
             </div>
           </a>
         </div>
-        <button type="button" class="btn btn-primary float-right">New Job</button>
+        <button type="button" class="btn btn-primary float-right" v-on:click="createNewJob()">New Job</button>
       </div>
     `,
     data: function() {
         return {
             jobs: jobs
         };
-    }
+    },
+    methods: {
+        showJobDetail: function(job) {
+            router.push({ path: `/jobs/${job.id}` })
+        },
+        createNewJob: function() {
+            router.push({ path: `/jobs/new` })
+        }
+    },
 });
 
-let CompanyProfileComponent = Vue.component('company-profile', {
+let CompanyProfileComponent = Vue.component('lc-company-profile', {
     template: `
     <div>
       <h2>Company Profile</h2>
@@ -90,19 +101,35 @@ let CompanyProfileComponent = Vue.component('company-profile', {
     }
 });
 
-let jobComponent = Vue.component('lc-job', {
-    // options
-    props: ['joby'],
+let JobDetailsComponent = Vue.component('lc-job', {
 
     template: `
-  	<h3>jo</h3>
+    <div>
+      <h2>{{job.title}}</h2>
+      <p>{{job.description}}</p>
+      <router-link :to="applicants" class="nav-link">Application List</router-link>
+      <router-view></router-view>
+    </div>
   `,
     data: function() {
         return {
-
+            job: jobs[this.$route.params.id - 1],
+            applicants: `/jobs/${this.$route.params.id - 1}/applicants`
         };
     }
 })
+
+let NewJobComponent = Vue.component('lc-new-job', {
+    template: `
+  <div>
+    <h2>New Job</h2>
+    <p>In construction</p>
+  </div>
+`,
+    data: function() {
+        return {};
+    }
+});
 
 let ApplicantListComponent = Vue.component('lc-applicant-list', {
     template: `
@@ -133,10 +160,30 @@ let ApplicantListComponent = Vue.component('lc-applicant-list', {
     },
 });
 
-const routes = [
-    { path: '/jobs', component: JobListComponent },
-    { path: '/applicants', component: ApplicantListComponent },
-    { path: '/company', component: CompanyProfileComponent }
+const routes = [{
+        path: '/',
+        component: JobListComponent
+    },
+    {
+        path: '/jobs',
+        component: JobListComponent
+    },
+    {
+        path: '/jobs/new',
+        component: NewJobComponent
+    },
+    {
+        path: '/jobs/:id',
+        component: JobDetailsComponent,
+        children: [{
+            path: 'applicants',
+            component: ApplicantListComponent
+        }]
+    },
+    {
+        path: '/company',
+        component: CompanyProfileComponent
+    }
 ]
 
 const router = new VueRouter({
@@ -146,8 +193,10 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     components: {
-        'lc-job': jobComponent,
+        'lc-job': JobDetailsComponent,
         'lc-applicant-list': ApplicantListComponent,
+        'lc-company-profile': CompanyProfileComponent,
+        'lc-job-list': JobListComponent
     },
     data: {
         message: 'Hello Vue.js!',
