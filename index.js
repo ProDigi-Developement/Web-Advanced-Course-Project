@@ -42,6 +42,18 @@ let jobComponent = Vue.component('lc-job', {
   }
 })
 
+let JobDetailsComponent = Vue.component('lc-job-details-route', {
+
+
+   template: `<h3></h3>`,
+   data: function() {
+  	return {
+        
+
+    };
+  }
+})
+
 function Job(parameters) {
 	this.title = parameters.title;
   this.startDate = parameters.startDate;
@@ -101,6 +113,7 @@ new Vue({
   components: {
   	'lc-job': jobComponent,
     'lc-applicant-list': ApplicantListComponent,
+    'lc-job-details-route':JobDetailsComponent,
   },
   data: {
     message: 'Hello Vue.js!',
