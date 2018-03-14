@@ -1,10 +1,13 @@
-export let JobDetailsRoute = Vue.component('lc-job-details-route', {
-  template: `
-  	<h1>Job Details Route</h1>
-  `,
-  data: function() {
-  	return {
+let jobComponent = Vue.component('lc-job', {
+    // options
+    props: ['joby'],
 
-    };
-  }
+    template: `
+        <h3>jobb!!</h3>
+    `,
+    data: function() {
+        return {
+
+        };
+    }
 });
