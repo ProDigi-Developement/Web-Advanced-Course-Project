@@ -80,7 +80,7 @@ let ProfileComponent = Vue.component('lc-company-profile', {
     </div>
   `,
     data: function() {
-
+        return {};
     },
     methods: {
 
