@@ -1,4 +1,4 @@
-let jobComponent = Vue.component('lc-job', {
+let JobDetailsComponent = Vue.component('lc-job-details', {
     // options
     props: ['joby'],
 

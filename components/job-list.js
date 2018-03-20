@@ -1,4 +1,4 @@
-let JobDetailsComponent = Vue.component('lc-job-details-route', {
+let JobListComponent = Vue.component('lc-job-list', {
 
 
     template: `<h3></h3>`,
