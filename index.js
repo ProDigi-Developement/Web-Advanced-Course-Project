@@ -1,4 +1,5 @@
 function Job(parameters) {
+    this.id = parameters.id;
     this.title = parameters.title;
     this.startDate = parameters.startDate;
     this.description = parameters.description;
@@ -9,43 +10,45 @@ function Job(parameters) {
     this.applicantList = parameters.applicantList;
 }
 
-
 let jobs = [
     new Job({
-        title: 'frontend developer 1',
+        id: 1,
+        title: 'Software Developer',
         startDate: new Date(),
-        description: 'Looking for a web developer who had 15 years of Vue.js',
+        description: '2-5 years’ experience in developing healthcare software applications in C#, Java, .Net, C++, HTML5',
         stack: {
-            backend: ['Node', 'Express', 'SQL'],
-            frontend: ['Vue', 'HTML', 'Sass', 'Bootstrap', 'Javascript'],
+            backend: ['C#', 'Java', '.Net'],
+            frontend: ['HTML5', 'CSS3', 'Vue.js', 'Bootstrap', 'Javascript'],
         },
-        numberApplied: 0,
+        numberApplied: 10,
         salary: 200000,
         postDate: new Date(),
         applicantList: [],
     }),
     new Job({
-        title: 'frontend developer 1',
+        id: 2,
+        title: 'Full Stack Developer',
         startDate: new Date(),
-        description: 'Looking for a web developer who had 15 years of Vue.js',
+        description: 'Experience using, or familiarity with the MEAN Stack: MongoDB, Express, AngularJS and Node.JS',
         stack: {
-            backend: ['Node', 'Express', 'SQL'],
-            frontend: ['Vue', 'HTML', 'Sass', 'Bootstrap', 'Javascript'],
+            backend: ['Node', 'MongoDB', 'Express'],
+            frontend: ['AngularJS', 'HTML', 'Sass', 'Bootstrap', 'CSS3', 'Javascript'],
         },
-        numberApplied: 0,
+        numberApplied: 5,
         salary: 200000,
         postDate: new Date(),
         applicantList: [],
     }),
     new Job({
-        title: 'frontend developer 1',
+        id: 3,
+        title: 'Front End Developer',
         startDate: new Date(),
-        description: 'Looking for a web developer who had 15 years of Vue.js',
+        description: 'Prior hands-on experience with JavaScript and JavaScript frameworks, such as VueJS and React;',
         stack: {
             backend: ['Node', 'Express', 'SQL'],
             frontend: ['Vue', 'HTML', 'Sass', 'Bootstrap', 'Javascript'],
         },
-        numberApplied: 0,
+        numberApplied: 15,
         salary: 200000,
         postDate: new Date(),
         applicantList: [],

@@ -13,6 +13,7 @@ const routes = [{
     {
         path: '/jobs/:id',
         component: JobDetailsComponent,
+        props: true,
         children: [{
             path: 'applicants',
             component: ApplicantListComponent
@@ -21,6 +22,10 @@ const routes = [{
     {
         path: '/company',
         component: ProfileComponent
+    },
+    {
+        path: '/student',
+        component: StudentProfileComponent
     }
 ]
 

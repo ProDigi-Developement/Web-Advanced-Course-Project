@@ -1,7 +1,7 @@
 let ApplicantListComponent = Vue.component('lc-applicant-list', {
     template: `
     <div>
-    	<h1>Applicant List</h1>
+    	<h4>Applicant List</h4>
       <ul>
         <li v-for="app in applicants">
           {{app}}

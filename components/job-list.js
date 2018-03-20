@@ -18,12 +18,15 @@ let JobListComponent = Vue.component('lc-job-list', {
       </div>
     `,
     data: function() {
+        console.log(jobs);
         return {
             jobs: jobs
         };
     },
     methods: {
         showJobDetail: function(job) {
+            console.log(job);
+
             router.push({ path: `/jobs/${job.id}` })
         },
         createNewJob: function() {
