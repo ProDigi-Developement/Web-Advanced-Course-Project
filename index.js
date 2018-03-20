@@ -55,10 +55,13 @@ let jobs = [
 new Vue({
     el: '#app',
     components: {
-        'lc-job': jobComponent,
+        'lc-job-details': JobDetailsComponent,
         'lc-applicant-list': ApplicantListComponent,
-        'lc-job-details-route': JobDetailsComponent,
-        'lc-company-profile:': ProfileComponent,
+        'lc-company-profile': ProfileComponent,
+        'lc-student-profile': StudentProfileComponent,
+        'lc-job-list': JobListComponent,
+        'lc-new-job': NewJobComponent
+
     },
     data: {
         message: 'Hello Vue.js!',
@@ -75,5 +78,6 @@ new Vue({
             this.setPage('job-details');
         }
     },
+    router
 
 })
