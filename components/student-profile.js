@@ -1,6 +1,6 @@
 let StudentProfileComponent = Vue.component('lc-student-profile', {
     template: `
-    <div>
+    <div class="container">
         <h1>Student Profile</h1>
         <h2>{{student.name}}</h2>
         <p>In construction</p>

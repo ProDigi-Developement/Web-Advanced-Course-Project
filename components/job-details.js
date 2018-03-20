@@ -8,6 +8,7 @@ let JobDetailsComponent = Vue.component('lc-job-details', {
     },
 
     template: `
+    <div class="container">
         <div class="jobdetails row">
             <div class="col">
                 <h4> {{currentJob.title}}</h4>
@@ -35,8 +36,9 @@ let JobDetailsComponent = Vue.component('lc-job-details', {
                 <router-view></router-view>
             </div>
         </div> 
+        </div> 
     `,
-    data: function() {
+    data: function () {
         return {
             currentJob: jobs[this.id - 1],
             applicants: `/jobs/${this.id}/applicants`

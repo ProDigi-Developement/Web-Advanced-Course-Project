@@ -1,9 +1,9 @@
 // company profile component
 let ProfileComponent = Vue.component('lc-company-profile', {
-    template: `
-    <div>
+  template: `
+    <div class="container">
 
-    <form>
+    <form class = "form_container">
     <div class="form-group">
       <div class="row">
         <div class="col-sm-2">
@@ -79,10 +79,10 @@ let ProfileComponent = Vue.component('lc-company-profile', {
   </form>
     </div>
   `,
-    data: function() {
-        return {};
-    },
-    methods: {
+  data: function () {
+    return {};
+  },
+  methods: {
 
-    },
+  },
 });

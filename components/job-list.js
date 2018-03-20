@@ -1,7 +1,7 @@
 let JobListComponent = Vue.component('lc-job-list', {
     template: `
-      <div>
-        <div class="list-group">
+      <div class="container">
+        <div class="list-group form_container">
           <a class="list-group-item list-group-item-action flex-column align-items-start" v-for="job in jobs" v-on:click="showJobDetail(job)" >
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{job.title}}</h5>
