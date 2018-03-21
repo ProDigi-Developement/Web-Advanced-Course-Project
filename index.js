@@ -1,3 +1,14 @@
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyB8m7LmEtH4wNjFKEfKnaUcUUJVdp1Ntx4",
+  authDomain: "localhost",
+  databaseURL: "https://pro-digi-advanced.firebaseio.com",
+  projectId: "pro-digi-advanced",
+  storageBucket: "pro-digi-advanced.appspot.com",
+  messagingSenderId: "275374348590"
+};
+firebase.initializeApp(config);
+
 function Job(parameters) {
     this.id = parameters.id;
     this.title = parameters.title;
@@ -55,8 +66,51 @@ let jobs = [
     })
 ];
 
+const store = new Vuex.Store({
+  state: {
+    jobList: [],
+    companyProfile: {},
+  },
+  getters: {
+    getJobs: function(state) {
+      return state.jobList;
+    },
+  },
+  mutations: {
+    addJobs (state, jobs) {
+      state.jobList = state.jobList.concat(jobs);
+    },
+    setCompanyProfile(state, profile) {
+      state.companyProfile = profile;
+    },
+  },
+
+  actions: {
+    getProfile(context) {
+      // call api to get profile
+      const profile = {
+        name: 'john',
+        position: 'junior developer',
+      }
+      setTimeout(() => {
+        commit('setCompanyProfile', profile);
+      }, 1000);
+    },
+
+    getJobs({commit}) {
+      // get api request
+      // parse objects into class instances
+      // commit to a mutation defined above
+      setTimeout(() => {
+        commit('addJobs', jobs);
+      }, 1000);
+    },
+  },
+});
+
 new Vue({
     el: '#app',
+    store,
     components: {
         'lc-job-details': JobDetailsComponent,
         'lc-applicant-list': ApplicantListComponent,
@@ -70,8 +124,18 @@ new Vue({
         message: 'Hello Vue.js!',
         currentPage: 'job-list',
         currentJob: null,
-        jobList: jobs,
     },
+
+    created() {
+      this.$store.dispatch('getJobs');
+    },
+
+    computed: {
+      jobList() {
+        return this.$store.state.jobList;
+      }
+    },
+
     methods: {
         setPage: function(page) {
             this.currentPage = page;

@@ -18,10 +18,12 @@ let JobListComponent = Vue.component('lc-job-list', {
       </div>
     `,
     data: function() {
-        console.log(jobs);
-        return {
-            jobs: jobs
-        };
+        return {};
+    },
+    computed: {
+      jobs() {
+        return this.$store.state.jobList;
+      }
     },
     methods: {
         showJobDetail: function(job) {
