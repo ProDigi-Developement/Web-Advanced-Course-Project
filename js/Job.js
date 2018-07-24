@@ -23,6 +23,7 @@ class Job {
         this._postDate 		= postDate;
         this._description	= description;
     }
+    set id  		(id)  			{ this._id = id               		}
     get id  		()       		{ return this._id                	}
     set title  		(title)  		{ this._title = title               }
     get title  		()       		{ return this._title                }
@@ -38,9 +39,17 @@ class Job {
     get description	()       		{ return this._description 			}
 }
 
-
+// Test constructor
 let job1 = new Job( 1, 'Job Title 1', 1000.00, 'Job benefits 1', '2018-09-01', '2018-07-24', 'Job description 1' );
-let job2 = new Job( 2, 'Job Title 1', 2000.00, 'Job benefits 2', '2018-09-02', '2018-07-24', 'Job description 2' );
-
 console.log( job1 );
-console.log( job2 );
+
+// Test getter and setter
+let job2 = new Job();
+job2.id = 2;
+job2.title = 'Job Title 1';
+job2.salary = 2000.00;
+job2.benefits = 'Job benefits 2';
+job2.startDate = '2018-09-02';
+job2.postDate = '2018-07-24';
+job2.description = 'Job description 2';
+console.log( job2.id, job2.title, job2.salary, job2.benefits, job2.startDate, job2.postDate, job2.description );
