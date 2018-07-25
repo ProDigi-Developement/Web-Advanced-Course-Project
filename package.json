@@ -1,0 +1,17 @@
+{
+  "name": "web-advanced-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.1.0",
+    "http-server": "^0.11.1"
+  },
+  "scripts": {
+    "docs:build": "documentation build js/** -f html -o docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
