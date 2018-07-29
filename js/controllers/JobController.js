@@ -19,5 +19,11 @@ class JobController {
         return objs;
     }
 
-    // methods come here
+    /**
+   * create a new job
+   */
+    create(job){  
+        this.fetcher.create(job);
+    }
+
 }

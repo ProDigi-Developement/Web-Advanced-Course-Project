@@ -10,7 +10,7 @@ class JobFetcher {
 
         this.url = 'https://pro-digi-advanced.firebaseio.com/job.json?auth=';
         this.token =
-      'eyJhbGciOiJSUzI1NiIsImtpZCI6ImI4OWY3MzQ2YTA5ODVmNDIxZGNkOGQzMGMwYjMwZWViZmFlMTlhMWUifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHJvLWRpZ2ktYWR2YW5jZWQiLCJhdWQiOiJwcm8tZGlnaS1hZHZhbmNlZCIsImF1dGhfdGltZSI6MTUzMjU3ODA2OCwidXNlcl9pZCI6IlBsaEd5Y0VnUzdZS1BYeHF5aE9NME9IVTR4MzIiLCJzdWIiOiJQbGhHeWNFZ1M3WUtQWHhxeWhPTTBPSFU0eDMyIiwiaWF0IjoxNTMyNTc4MDY4LCJleHAiOjE1MzI1ODE2NjgsImVtYWlsIjoiY2Fpb0B0cmFpbmVycGwudXMiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsiY2Fpb0B0cmFpbmVycGwudXMiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.Os-kbcN5tcYvmyj8jnMD6qtfUDFVwvGM1U24X08bTmqEBSpyoPkg6oic1gwmebjrt2xG8JrGvzT1OSBnVjj8KKKDG9p_H940KwRRodV9ZJA8vdXFtaFfXSQF1DoaS0CDASsiiQs1juNV6-ZGagWbUd-L6AHTZlDie8TCpylf6S9RmbGF5VowtJG8hgXiFb-eiZlqCEXNh8jgw8eaXrjhvc3v_56snN8HWnOD9bKkgfi48QK3AY_PK_lEZb1asTSr1gJbb1JRJftgD2v2Loe3bgF2QLOWuzkCwkp9g0ZFr6uSbuQJ_1gvgflv8VeLSBxaPZJkYzfl0YYgC2hEPojc6A';
+      'eyJhbGciOiJSUzI1NiIsImtpZCI6IjM2OTExYjU1NjU5YTI5YmU3NTYyMDYzYmIxNzc2NWI1NDk4ZTgwZDYifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHJvLWRpZ2ktYWR2YW5jZWQiLCJhdWQiOiJwcm8tZGlnaS1hZHZhbmNlZCIsImF1dGhfdGltZSI6MTUzMjg5MjQ3NSwidXNlcl9pZCI6IlBsaEd5Y0VnUzdZS1BYeHF5aE9NME9IVTR4MzIiLCJzdWIiOiJQbGhHeWNFZ1M3WUtQWHhxeWhPTTBPSFU0eDMyIiwiaWF0IjoxNTMyODkyNDc1LCJleHAiOjE1MzI4OTYwNzUsImVtYWlsIjoiY2Fpb0B0cmFpbmVycGwudXMiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsiY2Fpb0B0cmFpbmVycGwudXMiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.YU-iDlfsJViOnBst695CVKsxY43fsAn-JsVin1vJ31d9oFnlRL4ClgzqG0ihUmt3ZW2BoJC4vubVTVLFs0VYQqMZpcfpnUw6qIrHO-czXadF3PFtjtGHyA-6wvxZUkijr19Og3r0GtZ12Olz2RTnTNKxyzIwOz9OtBjLLq9GKdmpAk5rJV_O5Ry-btJNhyAKKhjgsJeCWO5r33L-2EoPpe_pcED65HVHeVoaakyx6OS0rNiU6TWza0S6wwY0KVxoeNxjZYz5dV8rvqA-tdLtn2HdiMtXNPdKSJxP19cOU6qVnwUCriQV9oiOf3lAPePo9ila9WvpHWQ8xrWwAdDBOg';
 
         return JobFetcher.instance;
     }
@@ -24,6 +24,14 @@ class JobFetcher {
             const data = await fetching.json();
             return data;
         } catch (err) {
+            throw new Error(err);
+        }
+    }
+
+    create(job){
+        try{
+
+        }catch(err) {
             throw new Error(err);
         }
     }
