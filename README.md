@@ -43,7 +43,7 @@ https://eslint.org/
 
     In your terminal, type the command. You must have `node.js` installed on your machine
 
-    `node install`
+    `npm install`
 
 1)  Start a web-server
 
