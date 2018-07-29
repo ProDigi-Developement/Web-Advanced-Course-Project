@@ -6,7 +6,7 @@ class CompanyController {
    * @constructor Constructor of CompanyController
    */
     constructor() {
-        this.fetcher = companyFetcher;
+        this.fetcher = companyFetcher; 
     }
 
     /**
