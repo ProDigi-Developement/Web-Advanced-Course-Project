@@ -15,7 +15,7 @@ class JobController {
    */
     async all() {
         const data = await this.fetcher.all();
-        const objs = data.map(d => new Job(d));
+        const objs = data.map(d => new Company(d));
         return objs;
     }
 
@@ -23,12 +23,9 @@ class JobController {
    * Filter by Title
    */
     async filterByTitle(title){   
-        const data = await this.fetcher.all();
-        const objs = data.map(d => new Job(d));
-        objs.forEach(function(element,index) {
-            if(title.toLowerCase() != element.props.title.toLowerCase())
-                objs.splice(index);
-        });
+        let data = await this.fetcher.all();
+        let objs = data.map(d => new Job(d));
+        objs = objs.filter(jobs => (jobs.props.title === title));
         return objs;
     }
 
@@ -36,25 +33,19 @@ class JobController {
    * Filter by Salary
    */
     async filterBySalary(salary){   
-        const data = await this.fetcher.all();
-        const objs = data.map(d => new Job(d));
-        objs.forEach(function(element,index) {
-            if(salary.toLowerCase() != element.props.salary.toLowerCase())
-                objs.splice(index);
-        });
+        let data = await this.fetcher.all();
+        let objs = data.map(d => new Job(d));
+        objs = objs.filter(jobs => (jobs.props.salary === salary));
         return objs;
     }
 
     /**
    * Filter by StartDate
    */
-  async filterByStartDate(startDate){   
-    const data = await this.fetcher.all();
-    const objs = data.map(d => new Job(d));
-    objs.forEach(function(element,index) {
-        if(startDate.toLowerCase() != element.props.startDate.toLowerCase())
-            objs.splice(index);
-    });
-    return objs;
-}
+    async filterByStartDate(startDate){   
+        let data = await this.fetcher.all();
+        let objs = data.map(d => new Job(d));
+        objs = objs.filter(jobs => (jobs.props.startDate === startDate));
+        return objs;
+    }
 }
