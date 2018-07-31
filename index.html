@@ -36,8 +36,9 @@
         // Job controller method's tests
         const jobController = new JobController();
 
-       // jobController.all().then(d => console.log(d));
+        jobController.all().then(d => console.log(d));
         jobController.filterByTitle("Apple").then(d => console.log(d));
+        jobController.filterBySalary("75,000.00").then(d => console.log(d));
 
     </script>
 </body>

@@ -31,4 +31,17 @@ class JobController {
         });
         return objs;
     }
+
+    /**
+   * Filter by Salary
+   */
+    async filterBySalary(salary){   
+        const data = await this.fetcher.all();
+        const objs = data.map(d => new Job(d));
+        objs.forEach(function(element,index) {
+            if(salary.toLowerCase() != element.props.salary.toLowerCase())
+                objs.splice(index);
+        });
+        return objs;
+    }
 }
