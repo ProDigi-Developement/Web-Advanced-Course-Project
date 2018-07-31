@@ -19,5 +19,19 @@ class CompanyController {
         return objs;
     }
 
+    async getCompanyByJob(jobId){
+        const data = await this.fetcher.allJobs();
+        const filtered = data.find(j => j.jobId == jobId);
+        if(filtered == null){
+            return null;
+        }
+        const companyList = await this.all();
+        const companyObj = companyList.find(c => c.props.companyId == filtered.companyId );
+        if(companyObj == null){
+            return null;
+        }
+        return companyObj;
+    }
+
     // methods come here
 }

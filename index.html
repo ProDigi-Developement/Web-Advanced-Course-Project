@@ -26,6 +26,7 @@
         const companyController = new CompanyController();
 
         companyController.all().then(d => console.log(d));
+        companyController.getCompanyByJob(-1).then(d => console.log(d));
     </script>
 </body>
 
