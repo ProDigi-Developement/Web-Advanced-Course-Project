@@ -20,10 +20,15 @@ class JobController {
     }
 
     /**
-   * create a new job
+   * Filter by Title
    */
-    create(job){  
-        this.fetcher.create(job);
+    async filterByTitle(title){   
+        const data = await this.fetcher.all();
+        const objs = data.map(d => new Job(d));
+        objs.forEach(function(element,index) {
+            if(title.toLowerCase() != element.props.title.toLowerCase())
+                objs.splice(index);
+        });
+        return objs;
     }
-
 }

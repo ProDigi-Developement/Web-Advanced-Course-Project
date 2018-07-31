@@ -36,7 +36,8 @@
         // Job controller method's tests
         const jobController = new JobController();
 
-        jobController.all().then(d => console.log(d));
+       // jobController.all().then(d => console.log(d));
+        jobController.filterByTitle("Apple").then(d => console.log(d));
 
     </script>
 </body>
