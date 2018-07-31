@@ -27,6 +27,29 @@ class StudentFetcher {
             throw new Error(err);
         }
     }
+
+    /**
+   * Insert student
+   * @param {Object} Student 
+   * @returns (To Be Confirmed) NEW Student ID
+   */
+    async insert(student) {
+        try {
+            const fetching = await fetch( `${this.url}${this.token}`, {
+                method: 'POST',
+                body: JSON.stringify(student),
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            });
+            //TODO : check object to return
+            const data = await fetching.json();
+            return data;
+        } catch (err) {
+            //TODO : check what to do in case of error
+            throw new Error(err);
+        }
+    }
 }
 
 // this is the instance of StudentFetcher
