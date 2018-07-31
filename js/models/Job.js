@@ -7,7 +7,7 @@ class Job extends Model {
    * @param {Object} props - id, title are required
    */
     constructor(props) {
-        super(props.id, props.title);
+        super(props.jobId, props.title);
 
         this.props = {
             id: props.id,

@@ -11,7 +11,7 @@
 <body>
 
     <!-- base script -->
-    <script src="js/models/models.js"></script>
+    <script src="js/models/models.js"></script> 
     <!-- end base script -->
 
     <!-- company related scripts -->
@@ -20,12 +20,26 @@
     <script src="js/controllers/CompanyController.js"></script>
     <!-- end company related scripts -->
 
+    <!-- job related scripts -->
+    <script src="js/api/JobFetcher.js"></script>
+    <script src="js/models/Job.js"></script>
+    <script src="js/controllers/JobController.js"></script>
+    <!-- end job related scripts -->
+
 
     <script>
         // Company controller method's tests
         const companyController = new CompanyController();
 
         companyController.all().then(d => console.log(d));
+
+        // Job controller method's tests
+        const jobController = new JobController();
+
+        jobController.all().then(d => console.log(d));
+        jobController.filterByTitle("Apple").then(d => console.log(d));
+        jobController.filterBySalary("03/03/2018").then(d => console.log(d));
+
     </script>
 </body>
 
