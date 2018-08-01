@@ -22,6 +22,27 @@
 
 
     <script>
+        // Company controller method's tests
+        const companyController = new CompanyController();
+
+        // companyController.all().then(d => console.log(d));
+
+        const obj = new Company({
+            name: "someone else",
+            email: "someone@else.com",
+            logo: "test",
+            size: 10,
+            contact: "someone",
+            website: "http://test.test.ca",
+            techStack: "test, test, test",
+            description: "test description"
+        });
+
+        // delete obj.props.id;
+        // console.log(obj);
+        companyController.create(obj).then(r => console.log(r));
+
+        //companyController.all().then(d => console.log(d));
     </script>
 </body>
 

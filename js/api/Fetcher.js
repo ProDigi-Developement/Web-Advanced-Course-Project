@@ -29,6 +29,21 @@ class Fetcher {
         }
     }
 
+    async post(url, data) {
+        try {
+            const posting = await fetch(`${this.baseUrl}/${url}`, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            const result = await posting.json();
+            return result;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
+
     async login() {
         try {
             let body = {
