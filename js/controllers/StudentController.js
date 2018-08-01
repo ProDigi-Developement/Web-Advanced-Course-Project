@@ -6,7 +6,8 @@ class StudentController {
    * @constructor Constructor of StudentController
    */
     constructor() {
-        this.fetcher = studentFetcher;
+        this.fetcher = Fetcher;
+        this.allStudentEndpoint = 'https://pro-digi-advanced.firebaseio.com/student.json'; 
     }
 
     /**
@@ -14,8 +15,9 @@ class StudentController {
    * @returns {Array} Student
    */
     async all() {
-        const data = await this.fetcher.all();
+        const data = await this.fetcher.fetch(this.allStudentEndpoint);
         const objs = data.map(d => new Student(d));
+
         return objs;
     }
 
