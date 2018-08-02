@@ -20,6 +20,7 @@ class CompanyController {
         return objs;
     }
 
+    async getCompanyByJobId(jobId){
     async create(company) {
         delete company.props.id;
 
