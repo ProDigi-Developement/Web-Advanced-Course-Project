@@ -15,7 +15,7 @@
     <!-- end base script -->
 
     <!-- company related scripts -->
-    <script src="js/api/CompanyFetcher.js"></script>
+    <script src="js/api/Fetcher.js"></script>
     <script src="js/models/Company.js"></script>
     <script src="js/controllers/CompanyController.js"></script>
     <!-- end company related scripts -->
@@ -27,6 +27,24 @@
 
         companyController.all().then(d => console.log(d));
         companyController.getCompanyByJob(-1).then(d => console.log(d));
+        // companyController.all().then(d => console.log(d));
+
+        const obj = new Company({
+            name: "someone else",
+            email: "someone@else.com",
+            logo: "test",
+            size: 10,
+            contact: "someone",
+            website: "http://test.test.ca",
+            techStack: "test, test, test",
+            description: "test description"
+        });
+
+        // delete obj.props.id;
+        // console.log(obj);
+        companyController.create(obj).then(r => console.log(r));
+
+        //companyController.all().then(d => console.log(d));
     </script>
 </body>
 
