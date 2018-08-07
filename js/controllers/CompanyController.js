@@ -6,7 +6,7 @@ class CompanyController {
    * @constructor Constructor of CompanyController
    */
     constructor() {
-        this.fetcher = companyFetcher; 
+        this.fetcher = fetcherObject;
     }
 
     /**
@@ -14,9 +14,18 @@ class CompanyController {
    * @returns {Array} Company
    */
     async all() {
-        const data = await this.fetcher.all();
+        const data = await this.fetcher.fetch('companies');
         const objs = data.map(d => new Company(d));
+
         return objs;
+    }
+
+    async create(company) {
+        delete company.props.id;
+
+        const data = company.props;
+        const r = await this.fetcher.post('companies', data);
+        return r;
     }
 
     // methods come here
