@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- base script -->
+    <script src="js/models/models.js"></script> 
+    <!-- end base script -->
+
+    <!-- company related scripts -->
+    <script src="js/api/CompanyFetcher.js"></script>
+    <script src="js/models/Company.js"></script>
+    <script src="js/controllers/CompanyController.js"></script>
+    <!-- end company related scripts -->
+
+    <!-- job related scripts -->
+    <script src="js/api/JobFetcher.js"></script>
+    <script src="js/models/Job.js"></script>
+    <script src="js/controllers/JobController.js"></script>
+    <!-- end job related scripts -->
+
+
+    <script>
+        // Company controller method's tests
+        const companyController = new CompanyController();
+
+        companyController.all().then(d => console.log(d));
+    </script>
+</body>
+
+</html>
