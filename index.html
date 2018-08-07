@@ -11,20 +11,14 @@
 <body>
 
     <!-- base script -->
-    <script src="js/models/models.js"></script> 
+    <script src="js/models/models.js"></script>
     <!-- end base script -->
 
     <!-- company related scripts -->
-    <script src="js/api/CompanyFetcher.js"></script>
+    <script src="js/api/Fetcher.js"></script>
     <script src="js/models/Company.js"></script>
     <script src="js/controllers/CompanyController.js"></script>
     <!-- end company related scripts -->
-
-    <!-- job related scripts -->
-    <script src="js/api/JobFetcher.js"></script>
-    <script src="js/models/Job.js"></script>
-    <script src="js/controllers/JobController.js"></script>
-    <!-- end job related scripts -->
 
 
     <script>
@@ -32,14 +26,25 @@
         const companyController = new CompanyController();
 
         companyController.all().then(d => console.log(d));
+        companyController.getCompanyByJobId("5b628568869d0b2614863901").then(d => console.log(d));
+        // companyController.all().then(d => console.log(d));
 
-        // Job controller method's tests
-        const jobController = new JobController();
+        const obj = new Company({
+            name: "someone else",
+            email: "someone@else.com",
+            logo: "test",
+            size: 10,
+            contact: "someone",
+            website: "http://test.test.ca",
+            techStack: "test, test, test",
+            description: "test description"
+        });
 
-        jobController.all().then(d => console.log(d));
-        jobController.filterByTitle("Apple").then(d => console.log(d));
-        jobController.filterBySalary("03/03/2018").then(d => console.log(d));
+        // delete obj.props.id;
+        // console.log(obj);
+        // companyController.create(obj).then(r => console.log(r));
 
+        //companyController.all().then(d => console.log(d));
     </script>
 </body>
 

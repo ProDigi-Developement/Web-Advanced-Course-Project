@@ -6,8 +6,7 @@ class CompanyController {
    * @constructor Constructor of CompanyController
    */
     constructor() {
-        this.fetcher = Fetcher; 
-        this.allCompanyEndpoint = 'https://pro-digi-advanced.firebaseio.com/company.json'; 
+        this.fetcher = fetcherObject;
     }
 
     /**
@@ -15,10 +14,25 @@ class CompanyController {
    * @returns {Array} Company
    */
     async all() {
-        const data = await this.fetcher.fetch(this.allCompanyEndpoint);
+        const data = await this.fetcher.fetch('companies');
         const objs = data.map(d => new Company(d));
 
         return objs;
+    }
+
+    async getCompanyByJobId(jobId){
+        
+        const data = await this.fetcher.fetch('jobs/'+jobId+'/company');
+        const objs = new Company(data);
+        return objs;
+    }
+
+    async create(company) {
+        delete company.props.id;
+
+        const data = company.props;
+        const r = await this.fetcher.post('companies', data);
+        return r;
     }
 
     // methods come here
