@@ -20,6 +20,13 @@ class CompanyController {
         return objs;
     }
 
+    async getCompanyByJobId(jobId){
+        
+        const data = await this.fetcher.fetch('jobs/'+jobId+'/company');
+        const objs = new Company(data);
+        return objs;
+    }
+
     async create(company) {
         delete company.props.id;
 
