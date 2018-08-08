@@ -7,10 +7,10 @@ class Company extends Model {
    * @param {Object} props - id, name and email are required
    */
     constructor(props) {
-        super(props.name, props.email);
+        super(props.id, props.name, props.email);
 
         this.props = {
-            id: props.id || null,
+            id: props.id,
             name: props.name,
             email: props.email,
             size: props.size || 0,
@@ -22,4 +22,6 @@ class Company extends Model {
             description: props.description || 'description'
         };
     }
+
+    // Any logic goes here
 }
