@@ -17,17 +17,21 @@
     <!-- company related scripts -->
     <script src="js/api/Fetcher.js"></script>
     <script src="js/models/Company.js"></script>
+    <script src="js/models/Job.js"></script>
     <script src="js/controllers/CompanyController.js"></script>
+    <script src="js/controllers/JobController.js"></script>
     <!-- end company related scripts -->
 
 
     <script>
         // Company controller method's tests
         const companyController = new CompanyController();
+        const jobController = new JobController();
 
         companyController.all().then(d => console.log(d));
-        companyController.getCompanyByJobId("5b64b072f4cc3003bc6c87a2").then(d => console.log(d));
+        // companyController.getCompanyByJobId("5b64b072f4cc3003bc6c87a2").then(d => console.log(d));
         // companyController.all().then(d => console.log(d));
+        jobController.all().then(d => console.log(d));
 
         const obj = new Company({
             name: "someone else",
