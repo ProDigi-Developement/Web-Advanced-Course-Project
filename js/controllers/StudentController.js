@@ -20,6 +20,13 @@ class StudentController {
         return objs;
     }
 
+    async byId(studentId) {
+        const data = await this.fetcher.fetch('students/' + studentId);
+        const objs = data.map(studentJSON => new Student(studentJSON));
+
+        return objs;
+    }
+
     /**
    * Filter students by term OR name OR education
    * @param {Object} props - term OR name OR education are optional
