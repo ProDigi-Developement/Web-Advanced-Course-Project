@@ -16,7 +16,7 @@ class JobController {
    */
     async all() {
         const data = await this.fetcher.fetch(this.jobsEndPoint);
-        const objs = data.map(d => new Company(d));
+        const objs = data.map(d => new Job(d));
         return objs;
     }
     
