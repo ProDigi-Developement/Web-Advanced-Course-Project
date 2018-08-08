@@ -7,6 +7,7 @@ class StudentController {
    */
     constructor() {
         this.fetcher = fetcherObject;
+        this.studentsEndpoint = 'students';
     }
 
     /**
@@ -14,14 +15,14 @@ class StudentController {
    * @returns {Array} Student
    */
     async all() {
-        const data = await this.fetcher.fetch('students');
+        const data = await this.fetcher.fetch(this.studentsEndpoint);
         const objs = data.map(studentJSON => new Student(studentJSON));
 
         return objs;
     }
 
     async byId(studentId) {
-        const data = await this.fetcher.fetch('students/' + studentId);
+        const data = await this.fetcher.fetch(this.studentsEndpoint + '/' + studentId);
         const objs = data.map(studentJSON => new Student(studentJSON));
 
         return objs;
