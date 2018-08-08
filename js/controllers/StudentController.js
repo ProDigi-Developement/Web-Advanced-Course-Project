@@ -28,6 +28,15 @@ class StudentController {
         return objs;
     }
 
+    async create(student) {
+        delete student.props.id; // Just to be safe
+
+        const data = student.props;
+        const returnStudent = await this.fetcher.post(this.studentsEndpoint, data);
+
+        return returnStudent;
+    }
+
     /**
    * Filter students by term OR name OR education
    * @param {Object} props - term OR name OR education are optional
