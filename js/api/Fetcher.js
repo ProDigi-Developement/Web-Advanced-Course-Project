@@ -44,6 +44,19 @@ class Fetcher {
             throw new Error(err);
         }
     }
+
+    async delete(url, objId) {
+        try {
+            const deleting = await fetch(`${this.baseUrl}/${url}/${objId}`, {
+                method: 'DELETE'
+            });
+
+            const result = await deleting.json();
+            return result;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
 }
 
 // this is the instance of Fetcher

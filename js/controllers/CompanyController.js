@@ -16,12 +16,10 @@ class CompanyController {
     async all() {
         const data = await this.fetcher.fetch('companies');
         const objs = data.map(d => new Company(d));
-
         return objs;
     }
 
     async getCompanyByJobId(jobId){
-        
         const data = await this.fetcher.fetch('jobs/'+jobId+'/company');
         const objs = new Company(data);
         return objs;
@@ -29,7 +27,6 @@ class CompanyController {
 
     async create(company) {
         delete company.props.id;
-
         const data = company.props;
         const r = await this.fetcher.post('companies', data);
         return r;
