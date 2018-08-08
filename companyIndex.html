@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Company Index</title>
+</head>
+
+<body>
+    <h2>List of Companies</h2>
+    <hr>
+
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Details</th>
+        </thead>
+
+        <tbody id="companies-data">
+
+        </tbody>
+    </table>
+
+    <!-- base script -->
+    <script src="js/models/models.js"></script>
+    <!-- end base script -->
+
+    <!-- company related scripts -->
+    <script src="js/api/Fetcher.js"></script>
+    <script src="js/models/Company.js"></script>
+    <script src="js/controllers/CompanyController.js"></script>
+    <script src="js/views/companyIndex.js"></script>
+</body>
+
+</html>
