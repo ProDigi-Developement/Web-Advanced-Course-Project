@@ -13,8 +13,10 @@ class CompanyController {
    * List all companies
    * @returns {Array} Company
    */
-    async all() {
-        const data = await this.fetcher.fetch('companies');
+    async all(filter = '') {
+        const data = await this.fetcher.fetch(
+            `Companies${filter ? `?filter=${JSON.stringify(filter)}` : ''}`
+        );
         const objs = data.map(d => new Company(d));
 
         return objs;
