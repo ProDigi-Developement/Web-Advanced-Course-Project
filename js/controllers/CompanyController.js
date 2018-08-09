@@ -18,7 +18,6 @@ class CompanyController {
             `Companies${filter ? `?filter=${JSON.stringify(filter)}` : ''}`
         );
         const objs = data.map(d => new Company(d));
-
         return objs;
     }
 
@@ -35,7 +34,6 @@ class CompanyController {
     }
     async create(company) {
         delete company.props.id;
-
         const data = company.props;
         const r = await this.fetcher.post('companies', data);
         return r;

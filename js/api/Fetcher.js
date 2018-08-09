@@ -11,18 +11,19 @@ class Fetcher {
 
         this.loginUrl = '';
         this.baseUrl = 'https://prodigi-api-advanced.herokuapp.com/api';
+
         return Fetcher.instance;
     }
 
     /**
-   * @returns All companies information
+   * @returns a JSON with all information
    */
     async fetch(url) {
-        try {
-            //const newToken = await this.login();
 
+        try {
             const fetching = await fetch(`${this.baseUrl}/${url}`);
             const data = await fetching.json();
+
             return data;
         } catch (err) {
             throw new Error(err);
@@ -44,22 +45,14 @@ class Fetcher {
         }
     }
 
-    async login() {
+    async delete(url, objId) {
         try {
-            let body = {
-                email: 'caio@trainerpl.us',
-                password: '121088',
-                returnSecureToken: true
-            };
-
-            const fetching = await fetch(`${this.loginUrl}`, {
-                method: 'POST',
-                body: body,
-                headers: { 'Content-Type': 'application/json' }
+            const deleting = await fetch(`${this.baseUrl}/${url}/${objId}`, {
+                method: 'DELETE'
             });
-            const data = await fetching.json();
 
-            return data.idToken;
+            const result = await deleting.json();
+            return result;
         } catch (err) {
             throw new Error(err);
         }
