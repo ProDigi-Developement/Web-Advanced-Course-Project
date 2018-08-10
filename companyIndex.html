@@ -18,15 +18,35 @@
     <nav>
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-left: 100px;">
                 <li>
                     <a href="#">Item 1</a>
                 </li>
                 <li>
                     <a href="#">Item 2</a>
                 </li>
+            </ul>
+            <ul class="right hide-on-med-and-down">
                 <li>
-                    <a href="#">Item 3</a>
+                    <div class="row">
+                        <form class="col s12" id="form-login">
+                            <div class="row">
+                                <div class="input-field col s4">
+
+                                    <input id="email" type="email" required>
+                                    <label for="email" style="color: #fff;">Email</label>
+                                </div>
+                                <div class="input-field col s4">
+
+                                    <input id="password" type="password" required>
+                                    <label for="password" style="color: #fff;">Password</label>
+                                </div>
+                                <div class="input-field col s4">
+                                    <button class="waves-effect waves-light btn" type="submit">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -70,6 +90,7 @@
     <!-- company related scripts -->
     <script src="js/api/Fetcher.js"></script>
     <script src="js/models/Company.js"></script>
+    <script src="js/controllers/AuthenticationController.js"></script>
     <script src="js/controllers/CompanyController.js"></script>
     <script src="js/views/companyIndex.js"></script>
 </body>

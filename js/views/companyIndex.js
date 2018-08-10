@@ -5,6 +5,9 @@ window.onload = () => {
 class CompanyView {
     constructor() {
         this.companyController = new CompanyController();
+        this.auth = new AuthenticationController();
+        this.companyController.setToken(this.auth.getToken());
+
         this.loadDOM();
         this.loadData();
     }
@@ -23,6 +26,10 @@ class CompanyView {
     }
 
     loadData() {
+        if (!this.companyController.token) {
+            this.companiesEl.innerHTML = 'Login is needed';
+        }
+
         const filter = {
             fields: {
                 id: true,
@@ -32,10 +39,12 @@ class CompanyView {
             }
         };
 
-        this.companyController.all(filter).then(d => {
-            const companies = d
-                .map(c => {
-                    return `
+        this.companyController
+            .all(filter)
+            .then(d => {
+                const companies = d
+                    .map(c => {
+                        return `
                     <li id="${c.props.id}" >
                         <div class="collapsible-header valign-wrapper">
                         <img src="${c.props.logo}" alt="" class="circle">
@@ -60,11 +69,14 @@ class CompanyView {
                     </li>
 
                 `;
-                })
-                .join('');
+                    })
+                    .join('');
 
-            this.companiesEl.innerHTML = companies;
-        });
+                this.companiesEl.innerHTML = companies;
+            })
+            .catch(error => {
+                this.companiesEl.innerHTML = error;
+            });
     }
 
     loadDetails(element) {
