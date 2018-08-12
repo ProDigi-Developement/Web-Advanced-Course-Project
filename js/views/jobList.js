@@ -13,6 +13,9 @@ class JobView {
 
     loadDOM() {
         this.jobsEl = document.querySelector("#job-data");
+        this.jobsEl.addEventListener('click', e=>{
+            console.log(e.target.id);
+        });
         
         
 
@@ -29,10 +32,22 @@ class JobView {
             .map(j => {
                 return `
                 <tr>
+                    
                     <td>${j.props.title}</td>
                     <td>${j.props.salary}</td>
+                    <td><span id=${j.props.id} class="new badge" data-badge-caption="Details">
+                    
+                    </span> </td>
+                   
                     
                 </tr>
+                <tr>
+                    <div id ="job-details-${j.props.id}">
+                    
+                    </div>
+                </tr>
+                
+                
 
             `;
             console.log(j.props.title);
