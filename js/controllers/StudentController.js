@@ -58,8 +58,6 @@ class StudentController {
 
         return filterdStudents;
     }
-<<<<<<< HEAD
-=======
 
     /**
    * insert new student
@@ -73,5 +71,4 @@ class StudentController {
     }
 
 // methods come here
->>>>>>> develop
 }
