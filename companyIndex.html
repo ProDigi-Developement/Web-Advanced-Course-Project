@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
+
+    <title>Company Index</title>
+</head>
+
+<body>
+    <!-- Just a small example of a navbar -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a href="#">Item 1</a>
+                </li>
+                <li>
+                    <a href="#">Item 2</a>
+                </li>
+                <li>
+                    <a href="#">Item 3</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>List of Companies</h2>
+
+        <ul class="collapsible" id="companies-data">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </ul>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+
+        </div>
+    </div>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+
+    <script>
+    </script>
+    <!-- base script -->
+    <script src="js/models/models.js"></script>
+    <!-- end base script -->
+
+    <!-- company related scripts -->
+    <script src="js/api/Fetcher.js"></script>
+    <script src="js/models/Company.js"></script>
+    <script src="js/controllers/CompanyController.js"></script>
+    <script src="js/views/companyIndex.js"></script>
+</body>
+
+</html>
