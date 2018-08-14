@@ -19,9 +19,12 @@ class Fetcher {
    * @returns a JSON with all information
    */
     async fetch(url) {
-
         try {
             const fetching = await fetch(`${this.baseUrl}/${url}`);
+
+            if (fetching.status !== 200) {
+                throw new Error(fetching.statusText);
+            }
             const data = await fetching.json();
 
             return data;
@@ -52,6 +55,25 @@ class Fetcher {
             });
 
             const result = await deleting.json();
+            return result;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
+
+    async login(data) {
+        try {
+            const loggin = await fetch(`${this.baseUrl}/users/login`, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            if (loggin.status !== 200) {
+                throw new Error(loggin.statusText);
+            }
+
+            const result = await loggin.json();
             return result;
         } catch (err) {
             throw new Error(err);
