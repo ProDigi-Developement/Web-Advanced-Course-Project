@@ -13,9 +13,9 @@ class Job extends Model {
             id: props.id,
             title: props.title,
             salary: props.salary || 0.0,
-            startDate: props.startDate || new Date(),
-            postDate: props.postDate || new Date(),
-            description: props.description || 'description',
+            startDate: props.startDate || '',
+            postDate: props.postDate || '',
+            description: props.description || '',
             companyId: props.companyId || -1
         };
     }

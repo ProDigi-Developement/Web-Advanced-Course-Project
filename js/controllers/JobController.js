@@ -6,6 +6,7 @@ class JobController {
    * @constructor Constructor of JobController
    */
     constructor() {
+        
         this.fetcher = fetcherObject;
         this.jobsEndPoint = "jobs";
     }
