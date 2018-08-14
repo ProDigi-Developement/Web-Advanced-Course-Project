@@ -10,7 +10,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
 
-    <title>Company Index</title>
+    <title>Students list</title>
 </head>
 
 <body>
@@ -53,9 +53,9 @@
     </nav>
 
     <div class="container">
-        <h2>List of Companies</h2>
+        <h2>List of Students</h2>
 
-        <ul class="collapsible" id="companies-data">
+        <ul class="collapsible" id="students-data">
             <div class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-blue-only">
                     <div class="circle-clipper left">
@@ -89,10 +89,12 @@
 
     <!-- company related scripts -->
     <script src="js/api/Fetcher.js"></script>
-    <script src="js/models/Company.js"></script>
+    <script src="js/models/Student.js"></script>
+    <script src="js/models/Job.js"></script>
     <script src="js/controllers/AuthenticationController.js"></script>
+    <script src="js/controllers/StudentController.js"></script>
     <script src="js/controllers/CompanyController.js"></script>
-    <script src="js/views/companyIndex.js"></script>
+    <script src="js/views/studentsList.js"></script>
 </body>
 
 </html>
