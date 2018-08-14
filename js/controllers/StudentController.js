@@ -58,4 +58,17 @@ class StudentController {
 
         return filterdStudents;
     }
+
+    /**
+   * insert new student
+   * @param {Object} student - object Student
+   * @returns {Object} Student with NEW id
+   */
+    async insertStudent(student) {
+        student.idStudent = await this.insertStudent(student);
+        return student;
+        //TODO : check what to do in case of error
+    }
+
+// methods come here
 }
