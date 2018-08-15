@@ -7,12 +7,12 @@ class Student extends Model {
    * @param {Object} props - id, name and email are required
    */
     constructor(props) {
-        super(props.id, props.name, props.email);
+        super(props.id, props.name);
 
         this.props = {
             id: props.id,
             name: props.name,
-            email: props.email,
+            email: props.email || 'email',
             photo: props.photo || 'photo',
             goal: props.goal || 'goal',
             term: props.term || 1,

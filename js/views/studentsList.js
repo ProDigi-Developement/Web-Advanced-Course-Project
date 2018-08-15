@@ -1,11 +1,14 @@
 window.onload = () => {
-    new CompanyView();
+    new StudentsList();
 };
 
-class CompanyView {
+class StudentsList {
     constructor() {
+        this.studentController = new StudentController();
         this.companyController = new CompanyController();
         this.auth = new AuthenticationController();
+
+        this.studentController.setToken(this.auth.getToken());
         this.companyController.setToken(this.auth.getToken());
 
         this.loadDOM();
@@ -13,44 +16,38 @@ class CompanyView {
     }
 
     loadDOM() {
-        this.companiesEl = document.querySelector('#companies-data');
-        this.companyDetailsEl = document.querySelector('#company-details');
+        this.studentsEl = document.querySelector('#students-data');
 
         // initializes materialize collapsible passing a callback function to handle
         // the Company details fetch. "M" is set by materialize javascript (no jquery needed)
         const elems = document.querySelectorAll('.collapsible');
-        this.collapsibleEl = M.Collapsible.init(elems, {
-            onOpenStart: element => this.loadDetails(element),
-            accordion: false
-        });
     }
 
     loadData() {
-        if (!this.companyController.token) {
-            this.companiesEl.innerHTML = 'Login is needed';
+        if (!this.studentController.token) {
+            this.studentsEl.innerHTML = 'Login is needed';
         }
 
         const filter = {
             fields: {
                 id: true,
                 name: true,
-                size: true,
-                logo: true
+                photo: true
             }
         };
 
-        this.companyController
+        this.studentController
             .all(filter)
             .then(d => {
-                const companies = d
+                const students = d
                     .map(c => {
                         return `
                     <li id="${c.props.id}" >
                         <div class="collapsible-header valign-wrapper">
-                        <img src="${c.props.logo}" alt="" class="circle">
+                        <img src="${c.props.photo}" alt="" class="circle">
                             <p>${c.props.name}</p>
                             <span class="new badge" data-badge-caption="- size">
-                                ${c.props.size} 
+                                ${c.props.id} 
                             </span>
                         </div>
                         <div class="collapsible-body" >
@@ -72,29 +69,10 @@ class CompanyView {
                     })
                     .join('');
 
-                this.companiesEl.innerHTML = companies;
+                this.studentsEl.innerHTML = students;
             })
             .catch(error => {
-                this.companiesEl.innerHTML = error;
+                this.studentsEl.innerHTML = error;
             });
-    }
-
-    loadDetails(element) {
-        const detailsEl = element.querySelector('.collapsible-body');
-        this.companyController.getCompanyById(element.id).then(company => {
-            detailsEl.innerHTML = `
-          
-                    <p><strong>Email:</strong> ${company.props.email}</p>
-                    <p><strong>Contact:</strong> ${company.props.contact}</p>
-                    <p><strong>Website:</strong> ${company.props.website}</p>
-                    <p><strong>TechStack:</strong> 
-                    ${company.props.techStack}</p>
-                    <p>
-                    <strong>Description:</strong> 
-                    ${company.props.description}</p>
-         
-            
-            `;
-        });
     }
 }
