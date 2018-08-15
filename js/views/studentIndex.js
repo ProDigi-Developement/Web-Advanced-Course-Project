@@ -7,6 +7,7 @@ window.onload = () => {
 class StudentView {
     constructor() {
         this.studentController = new StudentController();
+        this.studentController.setToken('uvcvtx8Z9k2TG53kpB7Dk2kWrJi5xmmxCUyMxZjZ3vhoPlFRWOtVLFqORoACMgzf');
         this.studentsArr = [];
         this.loadData();
     }
