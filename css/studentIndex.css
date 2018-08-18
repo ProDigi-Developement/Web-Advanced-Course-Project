@@ -1,0 +1,49 @@
+/* Compiled by https://www.cssportal.com/scss-to-css/ */
+th.sort {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  th.sort:hover {
+    cursor: pointer;
+    text-decoration: none;
+  }
+  th.sort:focus {
+    outline: none;
+  }
+  th.sort:after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    content: "";
+    position: relative;
+    top: -10px;
+    right: -5px;
+  }
+  th.sort.asc:after {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #000;
+    content: "";
+    position: relative;
+    top: 4px;
+    right: -5px;
+  }
+  th.sort.desc:after {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #000;
+    content: "";
+    position: relative;
+    top: -4px;
+    right: -5px;
+  }
+  

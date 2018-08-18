@@ -1,7 +1,14 @@
 window.onload = () => {
     const stView = new StudentView();
+
+    var options = { valueNames: ['material', 'quantity', 'price'] }
+        , documentTable = new List('mdl-table-new', options)
+    ;
     document.getElementById( 'cmbTermFilter' )
         .addEventListener( 'change', () => { stView.applyFilter() });
+    
+    // document.getElementById( 'cmbTermFilter' )
+    //     .addEventListener( 'change', () => { stView.applyFilter() });
 };
 
 class StudentView {
@@ -9,6 +16,11 @@ class StudentView {
         this.studentController = new StudentController();
         this.studentController.setToken('uvcvtx8Z9k2TG53kpB7Dk2kWrJi5xmmxCUyMxZjZ3vhoPlFRWOtVLFqORoACMgzf');
         this.studentsArr = [];
+
+        // Listjs.com properties
+        this.listJsDOMTable = null;
+        this.listJsOptions = { valueNames: [ 'name', 'email', 'term' ] };
+
         this.loadData();
     }
 
@@ -52,24 +64,35 @@ class StudentView {
     } 
 
     loadHtmlTable ( studentsArr ) {
-        const tableBody = studentsArr.map( st => { return `<tr> 
-                    <td><img src="${st.props.photo}"></img></td> 
-                    <td>${st.props.name}</td> 
-                    <td>${st.props.email}</td> 
-                    <td>${st.props.term}</td> 
-                    <td>${st.props.goal}</td> 
-                    <td>${st.props.githubLink}</td> </tr>`;
+        const tableBody = studentsArr.map( st => {
+            // td class "name, email, term" --> required by ListJS.com 
+            return `<tr> 
+                    <td  class = "mdl-data-table__cell--non-numeric" ><img  src="${st.props.photo}" ></img></td> 
+                    <td  class="name  mdl-data-table__cell--non-numeric" >${st.props.name}</td> 
+                    <td  class="email  mdl-data-table__cell--non-numeric" >${st.props.email}</td> 
+                    <td  class="term  mdl-data-table__cell--non-numeric" >${st.props.term}</td> 
+                    <td  class = "mdl-data-table__cell--non-numeric" >${st.props.resume}</td> 
+                    <td  class = "mdl-data-table__cell--non-numeric" >${st.props.linkedInLink}</td> 
+                    <td  class = "mdl-data-table__cell--non-numeric" >${st.props.githubLink}</td> 
+                </tr>`;
             }).join('');
-        document.querySelector( '#students-data' ).innerHTML = 
-            `<thead>
-                <th>Photo</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Term</th>
-                <th>Goal</th>
-                <th>Github link</th>
-            </thead>
-            <tbody> ${tableBody} </tbody>`;
+        // th data-sort and class "sort, name, email, term" --> required by ListJS.com 
+        // tbody class="list" --> required by ListJS.com
+        document.querySelector( '#students-table' ).innerHTML = 
+            `<thead><tr>
+                <th  class = "mdl-data-table__cell--non-numeric" >Photo</th>
+                <th  data-sort = "name"  class = "sort  name  mdl-data-table__cell--non-numeric" >Name</th>
+                <th  data-sort = "email"  class = "sort  email  mdl-data-table__cell--non-numeric" >Email</th>
+                <th  data-sort = "term"  class = "sort  term  mdl-data-table__cell--non-numeric" >Term</th>
+                <th  class = "mdl-data-table__cell--non-numeric" >Resume</th>
+                <th  class = "mdl-data-table__cell--non-numeric" >LinkedIn</th>
+                <th  class = "mdl-data-table__cell--non-numeric" >Github</th>
+            </tr></thead>
+            <tbody  class = "list" > ${tableBody} </tbody>`;
+        // required by ListJS.com
+        this.listJsDOMTable = new List( 'students-table', this.listJsOptions );
+        // make table Google MDL selectable
+        // add class mdl-data-table--selectable   
     }
 
     static uniqBy(a, key) {
