@@ -5,10 +5,7 @@ window.onload = () => {
         , documentTable = new List('mdl-table-new', options)
     ;
     document.getElementById( 'cmbTermFilter' )
-        .addEventListener( 'change', () => { stView.applyFilter() });
-    
-    // document.getElementById( 'cmbTermFilter' )
-    //     .addEventListener( 'change', () => { stView.applyFilter() });
+        .addEventListener( 'change', () => { stView.applyFilter(); });
 };
 
 class StudentView {
@@ -48,6 +45,12 @@ class StudentView {
             });
         }
 
+        // clear tbody except the first row, due to Google MDL
+        const tableRef = document.getElementById( 'students-table' );
+        while (tableRef.rows.length > 1) {
+            tableRef.deleteRow(1);
+        }
+
         this.loadHtmlTable ( filteredArr );
     }
 
@@ -64,35 +67,54 @@ class StudentView {
     } 
 
     loadHtmlTable ( studentsArr ) {
-        const tableBody = studentsArr.map( st => {
-            // td class "name, email, term" --> required by ListJS.com 
-            return `<tr> 
-                    <td  class = "mdl-data-table__cell--non-numeric" ><img  src="${st.props.photo}" ></img></td> 
-                    <td  class="name  mdl-data-table__cell--non-numeric" >${st.props.name}</td> 
-                    <td  class="email  mdl-data-table__cell--non-numeric" >${st.props.email}</td> 
-                    <td  class="term  mdl-data-table__cell--non-numeric" >${st.props.term}</td> 
-                    <td  class = "mdl-data-table__cell--non-numeric" >${st.props.resume}</td> 
-                    <td  class = "mdl-data-table__cell--non-numeric" >${st.props.linkedInLink}</td> 
-                    <td  class = "mdl-data-table__cell--non-numeric" >${st.props.githubLink}</td> 
-                </tr>`;
-            }).join('');
-        // th data-sort and class "sort, name, email, term" --> required by ListJS.com 
-        // tbody class="list" --> required by ListJS.com
-        document.querySelector( '#students-table' ).innerHTML = 
-            `<thead><tr>
-                <th  class = "mdl-data-table__cell--non-numeric" >Photo</th>
-                <th  data-sort = "name"  class = "sort  name  mdl-data-table__cell--non-numeric" >Name</th>
-                <th  data-sort = "email"  class = "sort  email  mdl-data-table__cell--non-numeric" >Email</th>
-                <th  data-sort = "term"  class = "sort  term  mdl-data-table__cell--non-numeric" >Term</th>
-                <th  class = "mdl-data-table__cell--non-numeric" >Resume</th>
-                <th  class = "mdl-data-table__cell--non-numeric" >LinkedIn</th>
-                <th  class = "mdl-data-table__cell--non-numeric" >Github</th>
-            </tr></thead>
-            <tbody  class = "list" > ${tableBody} </tbody>`;
+        const tableRef = document.getElementById( 'students-table' );
+        let rowCounter = 0;
+
+        studentsArr.forEach( st => {
+            this.loadRowTable( tableRef.insertRow(), rowCounter++ , st.props );
+        });
+
         // required by ListJS.com
         this.listJsDOMTable = new List( 'students-table', this.listJsOptions );
-        // make table Google MDL selectable
-        // add class mdl-data-table--selectable   
+    }
+
+    loadRowTable( row, rowid, stProps ) {
+        // --- Checkbox
+        row.insertCell().innerHTML =
+            `<label class="mdl-checkbox  mdl-js-checkbox  mdl-js-ripple-effect  mdl-data-table__select" `  +
+            `for="row[${rowid}]"> <input type="checkbox" id="row[${rowid}]" class="mdl-checkbox__input" />` + 
+            `</label>`;
+
+        // --- Photo
+        const celPhoto = row.insertCell();
+        celPhoto.innerHTML = `<img  src="${stProps.photo}" ></img>`;
+        celPhoto.className = 'mdl-data-table__cell--non-numeric';
+        // --- Name
+        const celName = row.insertCell();
+        celName.innerHTML = stProps.name;
+        celName.className = 'mdl-data-table__cell--non-numeric  name';
+        // --- Email
+        const celEmail = row.insertCell();
+        celEmail.innerHTML = stProps.email;
+        celEmail.className = 'mdl-data-table__cell--non-numeric  email';
+        // --- Term
+        const celTerm = row.insertCell();
+        celTerm.innerHTML = stProps.term;
+        celTerm.className = 'mdl-data-table__cell--non-numeric  term';
+        // --- Resume
+        const celResume = row.insertCell();
+        celResume.innerHTML = `<a href="${stProps.resume}">resume</a>`;
+        celResume.className = 'mdl-data-table__cell--non-numeric';
+        // --- Linkedin
+        const celLinkedin = row.insertCell();
+        celLinkedin.innerHTML = `<a href="${stProps.linkedInLink}">LinkedIn</a>`;
+        celLinkedin.className = 'mdl-data-table__cell--non-numeric';
+        // --- Github
+        const celGithub = row.insertCell();
+        celGithub.innerHTML = `<a href="${stProps.githubLink}">Github</a>`;
+        celGithub.className = 'mdl-data-table__cell--non-numeric';
+
+        componentHandler.upgradeElements(row);
     }
 
     static uniqBy(a, key) {
