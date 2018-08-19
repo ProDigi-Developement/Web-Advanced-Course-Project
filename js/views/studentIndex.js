@@ -1,10 +1,6 @@
 window.onload = () => {
     const stView = new StudentView();
 
-    document.getElementById('cmbTermFilter').addEventListener('change', () => {
-        stView.applyFilter(); 
-    });
-
     /* to be fixed
     document.getElementById('nameSearch').addEventListener('keyup', function (e) {
         if (e.keyCode === 27) {
@@ -22,20 +18,20 @@ class StudentView {
         this.studentsArr = [];
 
         // Listjs.com properties
-        this.listJsDOMTable = null;
-        this.listJsOptions = { valueNames: [ 'name', 'email', 'term' ] };
+        //this.listJsDOMTable = null;
+        //this.listJsOptions = { valueNames: [ 'name', 'email', 'term' ] };
 
-        this.loadData();
+        this.loadAllData();
     }
 
-    loadData() {
+    loadAllData() {
         this.studentController.all()
             .then( data => {
                 this.studentsArr = data; 
-                this.loadHtmlFilterCmb(); 
+                this.loadHtmlRadioTerm(); 
                 this.loadHtmlTable( this.studentsArr );
                 // required by ListJS.com
-                this.listJsDOMTable = new List( 'students-sort-table', this.listJsOptions );
+                // this.listJsDOMTable = new List( 'students-sort-table', this.listJsOptions );
             })
             .catch( (err) => {
                 // TODO: handle the error gracefully !!!
@@ -43,16 +39,32 @@ class StudentView {
             });
     }
 
+    loadFilterData() {
+        const term = document.querySelector('input[name=term-option-filter]:checked').value;
+
+        const props = {'term': term, 'name': ''}; 
+
+        // clear tbody except the first row, due to Google MDL
+        const tableRef = document.getElementById( 'students-table' );
+        while (tableRef.rows.length > 1) {
+            tableRef.deleteRow(1);
+        }
+
+        this.studentController.filterStudents(props)
+            .then( data => {
+                this.studentsArr = data; 
+                this.loadHtmlTable( this.studentsArr );
+            })
+            .catch( (err) => {
+                // TODO: handle the error gracefully !!!
+                console.log( err.message );
+            });
+    }
+
+    /* --- OLD version based on comboBox Term
     applyFilter () {
         const cmbTermEl = document.getElementById( 'cmbTermFilter' );
         let filteredArr = this.studentsArr;
-
-        /* TODO
-        let termsSpam = document.getElementById('spamFilter').getElementsByTagName('input');
-        filteredArr = filteredArr.filter( st => {
-            // TODO Filter Array for any term checked
-        });
-        */
 
         if ( cmbTermEl.selectedIndex > 0 )
         {
@@ -69,25 +81,38 @@ class StudentView {
 
         this.loadHtmlTable ( filteredArr );
     }
+    */
 
-    loadHtmlFilterCmb() {
-        // Populating Term combo
-        const cmbTermEl = document.getElementById( 'cmbTermFilter' );
-        cmbTermEl.options[ cmbTermEl.options.length ] = new Option( 'All' );
+    loadHtmlRadioTerm() {
+        // Populating Term radioButton span
+        let newSpan = document.createElement('span');
+        newSpan.innerHTML = 
+            '<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-0">'+
+            '<input type="radio" id="option-0" class="mdl-radio__button" value="0" name="term-option-filter" checked>'+
+            '<span class="mdl-radio__label">All terms</span>&nbsp;</label>';
+        componentHandler.upgradeElements(newSpan);
+        document.getElementById( 'spamFilter' ).appendChild(newSpan);
 
-        // Creating a sorted array with unique 'term' & mapping into the combo element
+        // Creating a sorted array with unique 'term' & mapping into the radioButton element
         [...new Set( this.studentsArr.map( st => st.props.term ).sort() ) ]
             .map( term => {
-                cmbTermEl.options[ cmbTermEl.options.length ] = new Option( term );
-                let newSpan = document.createElement('span');
+                newSpan = document.createElement('span');
                 newSpan.innerHTML = 
-                    `<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="${term}">`+
-                    `<input type="checkbox" id="${term}" class="mdl-checkbox__input" checked>`+
-                    `<span class="mdl-checkbox__label">Term ${term}</span> </label>`;
-                
+                    `<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-${term}">`+
+                    `<input type="radio" id="option-${term}" class="mdl-radio__button" value="${term}" name="term-option-filter">`+
+                    `<span class="mdl-radio__label">Term ${term}</span>&nbsp;</label>`;
                 componentHandler.upgradeElements(newSpan);
                 document.getElementById( 'spamFilter' ).appendChild(newSpan);
                 return;
+            });
+
+        // Adding event handler for newly radioButtons added
+        document.getElementsByName('term-option-filter')
+            .forEach( el => {
+                el.addEventListener('click', (evt) => {
+                    // this.loadFilterData(evt.target.value);   // TODO: in case call w/ selected value
+                    this.loadFilterData();
+                });    
             });
     } 
 

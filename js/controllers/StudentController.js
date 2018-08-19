@@ -51,24 +51,23 @@ class StudentController {
     }
 
     /**
-   * Filter students by term OR name OR education
-   * @param {Object} props - term OR name OR education are optional
+   * Filter students by term OR name
+   * @param {Object} props - term OR name are optional (Name can be partial)
    * @returns {Array} Student
    */
-    async filterStudents(props) {
-        this.props = {
-            term: props.term || '',
-            name: props.name || '',
-            education: props.education || ''
-        };
+    filterStudents(props) {
+        props.term = +(props.term ? props.term.trim() : 0); 
+        props.name = (props.name ? props.name.trim().toUpperCase() : ''); 
 
-        let filterdStudents = await this.all().filter(
-            student =>
-                (this.props.term === '' || this.props.term === student.term) &&
-        (this.props.name === '' || this.props.name === student.name) &&
-        (this.props.education === '' ||
-          this.props.education === student.education)
-        );
+        let filterdStudents = this.all()
+            .then( data => { 
+                return data.filter( student => {
+                    return (
+                        (props.term == 0 || student.props.term == props.term) &&
+                        (props.name == '' || student.props.name.toUpperCase().startsWith(props.name))
+                    );
+                });
+            });
 
         return filterdStudents;
     }
