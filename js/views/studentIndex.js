@@ -1,11 +1,18 @@
 window.onload = () => {
     const stView = new StudentView();
 
-    var options = { valueNames: ['material', 'quantity', 'price'] }
-        , documentTable = new List('mdl-table-new', options)
-    ;
-    document.getElementById( 'cmbTermFilter' )
-        .addEventListener( 'change', () => { stView.applyFilter(); });
+    document.getElementById('cmbTermFilter').addEventListener('change', () => {
+        stView.applyFilter(); 
+    });
+
+    /* to be fixed
+    document.getElementById('nameSearch').addEventListener('keyup', function (e) {
+        if (e.keyCode === 27) {
+            e.currentTarget.val('');
+            documentTable.search('');
+        }
+    });
+    */ 
 };
 
 class StudentView {
@@ -27,6 +34,8 @@ class StudentView {
                 this.studentsArr = data; 
                 this.loadHtmlFilterCmb(); 
                 this.loadHtmlTable( this.studentsArr );
+                // required by ListJS.com
+                this.listJsDOMTable = new List( 'students-sort-table', this.listJsOptions );
             })
             .catch( (err) => {
                 // TODO: handle the error gracefully !!!
@@ -37,6 +46,13 @@ class StudentView {
     applyFilter () {
         const cmbTermEl = document.getElementById( 'cmbTermFilter' );
         let filteredArr = this.studentsArr;
+
+        /* TODO
+        let termsSpam = document.getElementById('spamFilter').getElementsByTagName('input');
+        filteredArr = filteredArr.filter( st => {
+            // TODO Filter Array for any term checked
+        });
+        */
 
         if ( cmbTermEl.selectedIndex > 0 )
         {
@@ -62,7 +78,16 @@ class StudentView {
         // Creating a sorted array with unique 'term' & mapping into the combo element
         [...new Set( this.studentsArr.map( st => st.props.term ).sort() ) ]
             .map( term => {
-                return cmbTermEl.options[ cmbTermEl.options.length ] = new Option( term );
+                cmbTermEl.options[ cmbTermEl.options.length ] = new Option( term );
+                let newSpan = document.createElement('span');
+                newSpan.innerHTML = 
+                    `<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="${term}">`+
+                    `<input type="checkbox" id="${term}" class="mdl-checkbox__input" checked>`+
+                    `<span class="mdl-checkbox__label">Term ${term}</span> </label>`;
+                
+                componentHandler.upgradeElements(newSpan);
+                document.getElementById( 'spamFilter' ).appendChild(newSpan);
+                return;
             });
     } 
 
@@ -74,8 +99,6 @@ class StudentView {
             this.loadRowTable( tableRef.insertRow(), rowCounter++ , st.props );
         });
 
-        // required by ListJS.com
-        this.listJsDOMTable = new List( 'students-table', this.listJsOptions );
     }
 
     loadRowTable( row, rowid, stProps ) {
@@ -103,15 +126,15 @@ class StudentView {
         celTerm.className = 'mdl-data-table__cell--non-numeric  term';
         // --- Resume
         const celResume = row.insertCell();
-        celResume.innerHTML = `<a href="${stProps.resume}">resume</a>`;
+        celResume.innerHTML = `<a href="#">resume</a>`;
         celResume.className = 'mdl-data-table__cell--non-numeric';
         // --- Linkedin
         const celLinkedin = row.insertCell();
-        celLinkedin.innerHTML = `<a href="${stProps.linkedInLink}">LinkedIn</a>`;
+        celLinkedin.innerHTML = `<a href="#">LinkedIn</a>`;
         celLinkedin.className = 'mdl-data-table__cell--non-numeric';
         // --- Github
         const celGithub = row.insertCell();
-        celGithub.innerHTML = `<a href="${stProps.githubLink}">Github</a>`;
+        celGithub.innerHTML = `<a href="#">Github</a>`;
         celGithub.className = 'mdl-data-table__cell--non-numeric';
 
         componentHandler.upgradeElements(row);

@@ -19,40 +19,58 @@
 </head>
 
 <body>
-    <h2>List of Students</h2>
-    <hr>
-    Filter by:<br/>
-    Term <select id='cmbTermFilter'><!-- To be filled by studentView JS class --></select>
-    <hr>
+    <div id="students-sort-table">
+        <h2>List of Students</h2>
+        <hr>
+        Filter by:<br/>
+        Term <select id='cmbTermFilter'><!-- To be filled by studentView JS class --></select>
 
-    <table id="students-table" class="mdl-data-table  mdl-shadow--2dp">
-        <!-- To be filled by studentView JS class -->
-        <thead> 
-            <tr>
-                <th>&nbsp;</th>
-                <th  class="mdl-data-table__cell--non-numeric">Photo</th>
-                <th  class="mdl-data-table__cell--non-numeric sort name" data-sort="name">Name</th>
-                <th  class="mdl-data-table__cell--non-numeric sort email" data-sort="email">Email</th>
-                <th  class="mdl-data-table__cell--non-numeric sort term" data-sort="term">Term</th>
-                <th  class="mdl-data-table__cell--non-numeric">Resume</th>
-                <th  class="mdl-data-table__cell--non-numeric">LinkedIn</th>
-                <th  class="mdl-data-table__cell--non-numeric">Github</th>
-            </tr> 
-        </thead>
-        <tbody class="list" >
-            <!-- Placeholder row due to GMDL dynamic problem (To not be show) -->
-            <tr style="display:none">
-                <td>&nbsp;</td>
-                <td  class="mdl-data-table__cell--non-numeric"> photo </td> 
-                <td  class="mdl-data-table__cell--non-numeric name"> name </td> 
-                <td  class="mdl-data-table__cell--non-numeric email"> email </td> 
-                <td  class="mdl-data-table__cell--non-numeric term"> term </td> 
-                <td  class="mdl-data-table__cell--non-numeric"> resume </td> 
-                <td  class="mdl-data-table__cell--non-numeric"> linkedInLink </td> 
-                <td  class="mdl-data-table__cell--non-numeric"> githubLink </td> 
-            </tr> 
-        </tbody>
-    </table>
+
+        <span id='spamFilter'></span>
+
+        <!-- to be fixed
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-upgraded is-focused">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="nameSearch">
+                    <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input search" type="text" id="nameSearch">
+                    <label class="mdl-textfield__label" for="sample-expandable">Name to search</label>
+            </div>
+        </div>
+        -->
+
+        <hr>
+
+        <table id="students-table" class="mdl-data-table  mdl-shadow--2dp">
+            <!-- To be filled by studentView JS class -->
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th  class="mdl-data-table__cell--non-numeric">Photo</th>
+                    <th  class="mdl-data-table__cell--non-numeric sort name" data-sort="name">Name</th>
+                    <th  class="mdl-data-table__cell--non-numeric sort email" data-sort="email">Email</th>
+                    <th  class="mdl-data-table__cell--non-numeric sort term" data-sort="term">Term</th>
+                    <th  class="mdl-data-table__cell--non-numeric">Resume</th>
+                    <th  class="mdl-data-table__cell--non-numeric">LinkedIn</th>
+                    <th  class="mdl-data-table__cell--non-numeric">Github</th>
+                </tr> 
+            </thead>
+            <tbody class="list" >
+                <!-- Placeholder row due to GMDL dynamic problem (To not be show) -->
+                <tr style="display:none">
+                    <td>&nbsp;</td>
+                    <td  class="mdl-data-table__cell--non-numeric"> photo </td> 
+                    <td  class="mdl-data-table__cell--non-numeric name"> name </td> 
+                    <td  class="mdl-data-table__cell--non-numeric email"> email </td> 
+                    <td  class="mdl-data-table__cell--non-numeric term"> term </td> 
+                    <td  class="mdl-data-table__cell--non-numeric"> resume </td> 
+                    <td  class="mdl-data-table__cell--non-numeric"> linkedInLink </td> 
+                    <td  class="mdl-data-table__cell--non-numeric"> githubLink </td> 
+                </tr> 
+            </tbody>
+        </table>
+    </div>
 
     <!-- base script -->
     <script src="js/models/models.js"></script>
@@ -66,7 +84,7 @@
     <script src="js/models/Student.js"></script>
     <script src="js/controllers/AuthenticationController.js"></script>
     <script src="js/controllers/StudentController.js"></script>
-    <script src="js/views/studentIndex.js"></script>
+    <script defer src="js/views/studentIndex.js"></script>
     <!-- end Student related scripts -->
 </body>
 
