@@ -6,25 +6,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Student Index</title>
+
+    <!-- Google Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet" />
+    
+    <!-- Listjs.com -->
+    <!-- <link href="css/studentIndex.css"  rel="stylesheet" /> -->
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        /*    outline: none;*/
+        }
+
+        /* CARDS */
+        .mdl-grid {
+            max-width: 900px;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>List of Students</h2>
-    <hr>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class = "mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        
+        <header class = "mdl-layout__header">
+            <div class = "mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout__title">Advanced Bootcamp</span>
+                
+                <!-- Add spacer, to align navigation to the right -->
+                <div class = "mdl-layout-spacer"></div>
+                
+                <!-- Navigation -->
+                <nav class = "mdl-navigation">
+                    <button id = "btn-logout" class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                    Sign out <i class="material-icons">exit_to_app</i>
+                    </button>
+                </nav>
+            </div>
+        </header>
+        
+        <div class = "mdl-layout__drawer">
+            <span class = "mdl-layout-title">ProDigi Course</span>
+            <nav class = "mdl-navigation">
+                <a class = "mdl-navigation__link" href = "">Home</a>
+                <a class = "mdl-navigation__link" href = "">Companies</a>
+                <a class = "mdl-navigation__link" href = "">Jobs</a>
+                <a class = "mdl-navigation__link" href = "">About</a>
+            </nav>
+        </div>
+    
+        <main class = "mdl-layout__content  mdl-color--grey-300">
+            <div class = "mdl-grid">
 
-    <table id="students-data">
-        <!-- To be filled by studentView JS class -->
-    </table>
+                <div id="students-sort-table mdl-cell mdl-cell--6-col mdl-card mdl-shadow--6dp">
+                    <h2>List of Students</h2>
+                    <hr>
+                    Filter by:
+                    <span id='spamFilter'></span>
+
+                    <!-- Select ALL - To Be Fixed
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-upgraded is-focused">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="nameSearch">
+                                <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                                <input class="mdl-textfield__input search" type="text" id="nameSearch">
+                                <label class="mdl-textfield__label" for="sample-expandable">Name to search</label>
+                        </div>
+                    </div>
+                    -->
+                    <hr>
+
+                    <table id="students-table" class="mdl-data-table  mdl-shadow--2dp">
+                        <!-- To be filled by studentView JS class -->
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th  class="mdl-data-table__cell--non-numeric">Photo</th>
+                                <th  class="mdl-data-table__cell--non-numeric sort name" data-sort="name">Name</th>
+                                <th  class="mdl-data-table__cell--non-numeric sort email" data-sort="email">Email</th>
+                                <th  class="mdl-data-table__cell--non-numeric sort term" data-sort="term">Term</th>
+                                <th  class="mdl-data-table__cell--non-numeric">Resume</th>
+                                <th  class="mdl-data-table__cell--non-numeric">LinkedIn</th>
+                                <th  class="mdl-data-table__cell--non-numeric">Github</th>
+                            </tr> 
+                        </thead>
+                        <tbody class="list" >
+                            <!-- Placeholder row due to GMDL dynamic problem (To not be show) -->
+                            <tr style="display:none">
+                                <td>&nbsp;</td>
+                                <td  class="mdl-data-table__cell--non-numeric"> photo </td> 
+                                <td  class="mdl-data-table__cell--non-numeric name"> name </td> 
+                                <td  class="mdl-data-table__cell--non-numeric email"> email </td> 
+                                <td  class="mdl-data-table__cell--non-numeric term"> term </td> 
+                                <td  class="mdl-data-table__cell--non-numeric"> resume </td> 
+                                <td  class="mdl-data-table__cell--non-numeric"> linkedInLink </td> 
+                                <td  class="mdl-data-table__cell--non-numeric"> githubLink </td> 
+                            </tr> 
+                        </tbody>
+                    </table>
+                </div> <!-- students-table -->
+
+            </div> <!-- MDL grid -->
+        </main>
+         
+    </div> <!-- MDL layout -->
 
     <!-- base script -->
     <script src="js/models/models.js"></script>
     <!-- end base script -->
 
+    <!-- Listjs.com -->
+    <!-- <script type="text/javascript" src="assets/js/list.min.js"></script> -->
+
     <!-- Student related scripts -->
     <script src="js/api/Fetcher.js"></script>
     <script src="js/models/Student.js"></script>
+    <script src="js/controllers/AuthenticationController.js"></script>
     <script src="js/controllers/StudentController.js"></script>
-    <script src="js/views/studentIndex.js"></script>
+    <script defer src="js/views/studentIndex.js"></script>
     <!-- end Student related scripts -->
 </body>
 
